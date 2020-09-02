@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Redesenhe</string>
+
+    // Textos
+    <string name="title_activity_login">Login</string>
+    <string name="title_btn_login">Login</string>
+    <string name="recuperarSenha">Recuperar Senha</string>
+    <string name="text_naoPossuiConta">Ainda não tem conta ?</string>
+    <string name="text_linkCadastrar">Cadastre-se</string>
+    <string name="text_linkLogin">Já Tenho Conta</string>
+
+
 </resources>

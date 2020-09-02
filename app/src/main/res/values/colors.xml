@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#673AB7</color>
+    <color name="colorPrimaryDark">#58319C</color>
+    <color name="colorAccent">#008080</color>
+    <color name="roxoEscuroSistema">#30195D</color>
+    <color name="verdeGrana">#39FF14</color>
+    <color name="vermelhoSistema">#FF0000</color>
+    <color name="vermelhoTomate">#FF6347</color>
+    <color name="branco">#F1F5F7</color>
+    <color name="msgSucess">#008000</color>
+    <color name="msgAlert">#FFA500</color>
+    <color name="msgInfo">#87CEEB</color>
 </resources>
