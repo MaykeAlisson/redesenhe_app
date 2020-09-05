@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/inputEmailLogin"
+            android:id="@+id/activityLogin_inputEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/inputSenhaLogin"
+            android:id="@+id/activityLogin_inputSenha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Senha"
@@ -49,7 +49,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/activityLogin_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -66,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
     <TextView
-        android:id="@+id/textRecuperarSenha"
+        android:id="@+id/activityLogin_textRecuperarSenha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -78,10 +78,10 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/activityLogin_btn" />
 
     <TextView
-        android:id="@+id/textNaoTenhoConta"
+        android:id="@+id/activityLogin_textNaoTenhoConta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -89,11 +89,11 @@
         android:layout_marginRight="16dp"
         android:text="@string/text_naoPossuiConta"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/textLinkCadastro"
-        app:layout_constraintTop_toBottomOf="@+id/textRecuperarSenha" />
+        app:layout_constraintEnd_toStartOf="@+id/activityLogin_textLinkCadastro"
+        app:layout_constraintTop_toBottomOf="@+id/activityLogin_textRecuperarSenha" />
 
     <TextView
-        android:id="@+id/textLinkCadastro"
+        android:id="@+id/activityLogin_textLinkCadastro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -106,8 +106,8 @@
         android:textColor="#3F51B5"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textNaoTenhoConta"
+        app:layout_constraintBaseline_toBaselineOf="@+id/activityLogin_textNaoTenhoConta"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textRecuperarSenha" />
+        app:layout_constraintTop_toBottomOf="@+id/activityLogin_textRecuperarSenha" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
