@@ -1,8 +1,8 @@
-package br.com.redesenhe.redesenhe
+package br.com.redesenhe.redesenhe.view
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import br.com.redesenhe.redesenhe.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

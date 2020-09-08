@@ -7,13 +7,14 @@
     android:background="@color/branco"
     android:orientation="vertical"
     android:padding="8dp"
-    tools:context="br.com.redesenhe.redesenhe.HomeActivity">
+    tools:context="br.com.redesenhe.redesenhe.view.HomeActivity">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:layout_weight="5">
+        android:layout_weight="5"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,7 +25,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
                 android:layout_weight="5"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:baselineAligned="false">
 
                 <LinearLayout
                     android:id="@+id/linearLayoutHomeContas"
@@ -35,13 +37,15 @@
                     android:background="@drawable/menu_background1"
                     android:elevation="3dp"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    tools:ignore="NestedWeights">
 
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginBottom="20dp"
-                        android:src="@drawable/ic_objetivos" />
+                        android:src="@drawable/ic_objetivos"
+                        android:contentDescription="Objetivos" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -66,7 +70,8 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginBottom="20dp"
-                        android:src="@drawable/ic_baseline_book_24" />
+                        android:src="@drawable/ic_baseline_book_24"
+                        android:contentDescription="Livros" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -80,7 +85,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
-                android:layout_weight="5">
+                android:layout_weight="5"
+                android:baselineAligned="false">
 
                 <LinearLayout
                     android:id="@+id/linearLayoutHomeEspirito"
@@ -91,13 +97,15 @@
                     android:background="@drawable/menu_background3"
                     android:elevation="3dp"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    tools:ignore="NestedWeights">
 
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginBottom="20dp"
-                        android:src="@drawable/ic_coracao" />
+                        android:src="@drawable/ic_coracao"
+                        android:contentDescription="Espirito" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -122,7 +130,8 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginBottom="20dp"
-                        android:src="@drawable/ic_fitness" />
+                        android:src="@drawable/ic_fitness"
+                        android:contentDescription="Fisico" />
 
                     <TextView
                         android:layout_width="wrap_content"
