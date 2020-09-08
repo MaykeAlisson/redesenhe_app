@@ -1,34 +1,33 @@
 package br.com.redesenhe.redesenhe
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
-class LoginActivity : AppCompatActivity(), View.OnClickListener{
-
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
 //        val activityloginInputemail = activityLogin_inputEmail
 //        val activityloginInputemail1 = activityLogin_inputEmail
-        activityLogin_btn.setOnClickListener(this)
-      activityLogin_textLinkCadastro.setOnClickListener(this)
-        activityLogin_textRecuperarSenha.setOnClickListener(this)
+        activity_login_btn.setOnClickListener(this)
+        activity_login_link_cadastro.setOnClickListener(this)
+        activity_login_text_recuperar_senha.setOnClickListener(this)
     }
 
     override fun onClick(view: View) {
-        val id = view.id
-        if (id == R.id.activityLogin_textLinkCadastro){
-            openViewCadastro()
-        }
-        if (id == R.id.activityLogin_textRecuperarSenha){
-            recuperaSenha()
-        }
-        if (id == R.id.activityLogin_btn){
-            realizaLogin()
+        when (view.id) {
+            R.id.activity_login_link_cadastro -> {
+                openViewCadastro()
+            }
+            R.id.activity_login_text_recuperar_senha -> {
+                recuperaSenha()
+            }
+            R.id.activity_login_btn -> {
+                realizaLogin()
+            }
         }
     }
 
@@ -41,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun realizaLogin() {
-        val activityloginInputemail = activityLogin_inputEmail
-        val activityloginInputsenha = activityLogin_inputSenha
+        val mEmail = activity_login_text_email.text.toString()
+        val mSenha = activity_login_text_senha.text.toString()
     }
 }
