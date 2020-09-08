@@ -1,8 +1,9 @@
-package br.com.redesenhe.redesenhe
+package br.com.redesenhe.redesenhe.view
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import br.com.redesenhe.redesenhe.R
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
