@@ -1,47 +1,86 @@
 package br.com.redesenhe.redesenhe.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import br.com.redesenhe.redesenhe.R
+import br.com.redesenhe.redesenhe.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
+
+    private lateinit var mViewModel: LoginViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-//        val activityloginInputemail = activityLogin_inputEmail
-//        val activityloginInputemail1 = activityLogin_inputEmail
-        activity_login_btn.setOnClickListener(this)
-        activity_login_link_cadastro.setOnClickListener(this)
-        activity_login_text_recuperar_senha.setOnClickListener(this)
+        mViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+
+        // Inicializa eventos
+        setListeners();
+        observe()
+
+        // Verifica se usuário está logado
+        verifyLoggedUser()
+
     }
 
     override fun onClick(view: View) {
         when (view.id) {
             R.id.activity_login_link_cadastro -> {
-                openViewCadastro()
+                startActivity(Intent(this, RegisterActivity::class.java))
             }
             R.id.activity_login_text_recuperar_senha -> {
                 recuperaSenha()
             }
             R.id.activity_login_btn -> {
-                realizaLogin()
+                handleLogin()
             }
         }
     }
 
-    private fun openViewCadastro() {
-        TODO("Not yet implemented")
+    /**
+     * Inicializa os eventos de click
+     */
+    private fun setListeners() {
+        activity_login_btn.setOnClickListener(this)
+        activity_login_link_cadastro.setOnClickListener(this)
+        activity_login_text_recuperar_senha.setOnClickListener(this)
     }
 
+    /**
+     * Verifica se usuário está logado
+     */
+    private fun verifyLoggedUser() {
+        mViewModel.verifyLoggedUser()
+    }
+
+    /**
+     * Observa ViewModel
+     */
+    private fun observe() {}
+
+    /**
+     * Autentica usuário
+     */
+    private fun handleLogin() {
+        val email = activity_login_text_email.text.toString()
+        val password = activity_login_text_senha.text.toString()
+
+        mViewModel.doLogin(email, password)
+
+        startActivity(Intent(this, MainActivity::class.java))
+    }
+
+    /**
+     * Recupera senha do usuário
+     */
     private fun recuperaSenha() {
-        TODO("Not yet implemented")
+        Toast.makeText(applicationContext, "Recupera Senha", Toast.LENGTH_SHORT).show()
     }
 
-    private fun realizaLogin() {
-        val mEmail = activity_login_text_email.text.toString()
-        val mSenha = activity_login_text_senha.text.toString()
-    }
 }

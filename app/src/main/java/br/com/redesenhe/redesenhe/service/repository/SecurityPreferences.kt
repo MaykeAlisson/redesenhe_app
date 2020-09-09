@@ -9,7 +9,7 @@ import android.content.SharedPreferences
 class SecurityPreferences(context: Context) {
 
     private val mPreferences: SharedPreferences =
-        context.getSharedPreferences("taskShared", Context.MODE_PRIVATE)
+        context.getSharedPreferences("redesenheShared", Context.MODE_PRIVATE)
 
     fun store(key: String, value: String) {
         mPreferences.edit().putString(key, value).apply()
