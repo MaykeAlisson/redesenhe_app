@@ -73,7 +73,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         mViewModel.doLogin(email, password)
 
-        startActivity(Intent(this, MainActivity::class.java))
     }
 
     /**

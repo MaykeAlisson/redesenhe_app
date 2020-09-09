@@ -1,4 +1,4 @@
-package br.com.redesenhe.redesenhe.service.repository
+package br.com.redesenhe.redesenhe.service.repository.local
 
 import android.content.Context
 import android.content.SharedPreferences
