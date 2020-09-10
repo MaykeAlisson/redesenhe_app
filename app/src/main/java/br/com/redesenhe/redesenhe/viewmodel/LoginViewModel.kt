@@ -2,17 +2,42 @@ package br.com.redesenhe.redesenhe.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import br.com.redesenhe.redesenhe.service.constants.RedesenheConstants
+import br.com.redesenhe.redesenhe.service.listener.APIListener
+import br.com.redesenhe.redesenhe.service.listener.ValidationListener
+import br.com.redesenhe.redesenhe.service.model.InfoUsuarioModel
 import br.com.redesenhe.redesenhe.service.repository.UsuarioRepository
+import br.com.redesenhe.redesenhe.service.repository.local.SecurityPreferences
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val mUsuarioRepository = UsuarioRepository()
+    private val mUsuarioRepository = UsuarioRepository(application)
+    private val mSharedPreferences = SecurityPreferences(application)
+
+    private val mLogin = MutableLiveData<ValidationListener>()
+    var login: LiveData<ValidationListener> = mLogin
 
     /**
      * Faz login usando API
      */
     fun doLogin(email: String, password: String) {
-        mUsuarioRepository.login(email, password)
+        mUsuarioRepository.login(email, password, object : APIListener{
+            override fun onSuccess(model: InfoUsuarioModel) {
+                mSharedPreferences.store(RedesenheConstants.SHARED.TOKEN, model.token)
+                mSharedPreferences.store(RedesenheConstants.SHARED.USER_ID, model.idUser)
+                mSharedPreferences.store(RedesenheConstants.SHARED.USER_NAME, model.userName)
+
+                mLogin.value = ValidationListener()
+
+            }
+
+            override fun onFailure(str: String) {
+                mLogin.value = ValidationListener(str)
+            }
+
+        })
     }
 
     /**

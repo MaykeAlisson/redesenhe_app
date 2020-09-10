@@ -1,7 +1,20 @@
 <resources>
     <string name="app_name">Redesenhe</string>
 
-    // Textos
+    <string name="ERROR_UNEXPECTED">Um erro inesperado ocorreu. Tente novamente mais tarde.</string>
+    <string name="ERROR_LOAD_OBJETIVO">Erro ao carregar o objetivo.</string>
+    <string name="ERROR_LOAD_LANCAMENTO">Erro ao carregar o lançamento.</string>
+    <string name="ERROR_INTERNET_CONNECTION">Conexão à internet necessária para uso da applicação.</string>
+
+    <string name="objetivo_updated">Objetivo atualizada com sucesso!</string>
+    <string name="objetivo_created">Objetivo criada com sucesso!</string>
+    <string name="objetivo_removed">Objetivo removida com sucesso!</string>
+
+    <string name="lancamento_updated">Lançamento atualizada com sucesso!</string>
+    <string name="lancamento_created">Lançamento criada com sucesso!</string>
+    <string name="lancamento_removed">Lançamento removida com sucesso!</string>
+
+
     <string name="title_activity_login">Login</string>
     <string name="title_btn_login">Login</string>
     <string name="recuperarSenha">Recuperar Senha</string>

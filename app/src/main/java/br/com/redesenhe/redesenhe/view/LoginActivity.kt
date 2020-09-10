@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.redesenhe.redesenhe.R
 import br.com.redesenhe.redesenhe.viewmodel.LoginViewModel
@@ -62,7 +63,16 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     /**
      * Observa ViewModel
      */
-    private fun observe() {}
+    private fun observe() {
+        mViewModel.login.observe(this, Observer {
+            if (it.success()){
+                startActivity(Intent(this, MainActivity::class.java))
+            }else{
+                val msg = it.falure()
+                Toast.makeText(applicationContext, msg, Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
 
     /**
      * Autentica usuário
