@@ -21,6 +21,8 @@
     <string name="text_naoPossuiConta">Ainda não tem conta ?</string>
     <string name="text_linkCadastrar">Cadastre-se</string>
     <string name="text_linkLogin">Já Tenho Conta</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

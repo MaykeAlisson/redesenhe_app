@@ -23,21 +23,23 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
      * Faz login usando API
      */
     fun doLogin(email: String, password: String) {
-        mUsuarioRepository.login(email, password, object : APIListener{
-            override fun onSuccess(model: InfoUsuarioModel) {
-                mSharedPreferences.store(RedesenheConstants.SHARED.TOKEN, model.token)
-                mSharedPreferences.store(RedesenheConstants.SHARED.USER_ID, model.idUser)
-                mSharedPreferences.store(RedesenheConstants.SHARED.USER_NAME, model.userName)
+        mLogin.value = ValidationListener()
 
-                mLogin.value = ValidationListener()
-
-            }
-
-            override fun onFailure(str: String) {
-                mLogin.value = ValidationListener(str)
-            }
-
-        })
+//        mUsuarioRepository.login(email, password, object : APIListener{
+//            override fun onSuccess(model: InfoUsuarioModel) {
+//                mSharedPreferences.store(RedesenheConstants.SHARED.TOKEN, model.token)
+//                mSharedPreferences.store(RedesenheConstants.SHARED.USER_ID, model.idUser)
+//                mSharedPreferences.store(RedesenheConstants.SHARED.USER_NAME, model.userName)
+//
+//                mLogin.value = ValidationListener()
+//
+//            }
+//
+//            override fun onFailure(str: String) {
+//                mLogin.value = ValidationListener(str)
+//            }
+//
+//        })
     }
 
     /**
