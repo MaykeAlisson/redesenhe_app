@@ -44,4 +44,32 @@ class UsuarioRepository(val context: Context) {
             }
         })
     }
+
+    fun create(email: String, senha: String, listener: APIListener) {
+
+        val obj = JsonObject()
+        obj.addProperty("email", email)
+        obj.addProperty("senha", senha)
+
+        val call: Call<InfoUsuarioModel> = mRemote.create(obj)
+        call.enqueue(object : Callback<InfoUsuarioModel> {
+            override fun onResponse(
+                call: Call<InfoUsuarioModel>,
+                response: Response<InfoUsuarioModel>
+            ) {
+                if (response.code() != SUCCESS) {
+                    val validation =
+                        Gson().fromJson(response.errorBody()!!.toString(), String::class.java)
+                    listener.onFailure(validation)
+                } else {
+                    response.body()?.let { listener.onSuccess(it) }
+                }
+
+            }
+
+            override fun onFailure(call: Call<InfoUsuarioModel>, t: Throwable) {
+                listener.onFailure(context.getString(R.string.ERROR_UNEXPECTED))
+            }
+        })
+    }
 }

@@ -10,4 +10,7 @@ interface UsuarioService {
 
     @POST("/api/usuario/v1/login")
     fun login(@Body json: JsonObject): Call<InfoUsuarioModel>
+
+    @POST("/api/usuario/v1/cadastro")
+    fun create(@Body json: JsonObject): Call<InfoUsuarioModel>
 }
