@@ -17,7 +17,7 @@ class UsuarioRepository(val context: Context) {
 
     private val mRemote = RetrofitClient.createService(UsuarioService::class.java)
 
-    fun login(email: String, senha: String, listener: APIListener) {
+    fun login(email: String, senha: String, listener: APIListener<Any?>) {
 
         val obj = JsonObject()
         obj.addProperty("email", email)
@@ -45,7 +45,7 @@ class UsuarioRepository(val context: Context) {
         })
     }
 
-    fun create(email: String, senha: String, listener: APIListener) {
+    fun create(email: String, senha: String, listener: APIListener<Any?>) {
 
         val obj = JsonObject()
         obj.addProperty("email", email)

@@ -60,6 +60,7 @@ class AllObjetivoFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         mAdapter.attachListener(mListener)
+        mViewModel.all()
     }
 
     private fun observe() {}
