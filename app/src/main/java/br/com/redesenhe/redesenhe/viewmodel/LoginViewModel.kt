@@ -10,6 +10,7 @@ import br.com.redesenhe.redesenhe.service.listener.ValidationListener
 import br.com.redesenhe.redesenhe.service.model.InfoUsuarioModel
 import br.com.redesenhe.redesenhe.service.repository.UsuarioRepository
 import br.com.redesenhe.redesenhe.service.repository.local.SecurityPreferences
+import br.com.redesenhe.redesenhe.service.repository.remote.RetrofitClient
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -30,6 +31,8 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 //                mSharedPreferences.store(RedesenheConstants.SHARED.TOKEN, model.token)
 //                mSharedPreferences.store(RedesenheConstants.SHARED.USER_ID, model.idUser)
 //                mSharedPreferences.store(RedesenheConstants.SHARED.USER_NAME, model.userName)
+
+//        RetrofitClient.addHeader(model.token)
 //
 //                mLogin.value = ValidationListener()
 //

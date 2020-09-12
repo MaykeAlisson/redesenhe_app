@@ -10,10 +10,20 @@ class RetrofitClient private constructor() {
 
         private lateinit var retrofit: Retrofit
         private val baseurl = "http://192.168.0.4:3000"
+        private var tokenKey = ""
 //        private val baseurl = "http://192.168.1.86:3000"
+        private var token = "Bearer $tokenKey"
 
         private fun getRetrofitInstance(): Retrofit {
             val httpClient = OkHttpClient.Builder()
+            httpClient.addInterceptor { chain ->
+                val request =
+                    chain.request()
+                        .newBuilder()
+                        .addHeader("Authorization", token)
+                        .build()
+                chain.proceed(request)
+            }
             if (!Companion::retrofit.isInitialized) {
                 retrofit = Retrofit.Builder()
                     .baseUrl(baseurl)
@@ -22,6 +32,10 @@ class RetrofitClient private constructor() {
                     .build()
             }
             return retrofit
+        }
+
+        fun addHeader(token: String){
+            this.tokenKey = token
         }
 
         fun <S> createService(serviceClass: Class<S>): S {
