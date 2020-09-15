@@ -3,8 +3,10 @@ package br.com.redesenhe.redesenhe.service.repository
 import android.content.Context
 import br.com.redesenhe.redesenhe.R
 import br.com.redesenhe.redesenhe.service.constants.RedesenheConstants
+import br.com.redesenhe.redesenhe.service.constants.RedesenheConstants.SHARED.TOKEN
 import br.com.redesenhe.redesenhe.service.listener.APIListener
 import br.com.redesenhe.redesenhe.service.model.ObjetivoModel
+import br.com.redesenhe.redesenhe.service.repository.local.SecurityPreferences
 import br.com.redesenhe.redesenhe.service.repository.remote.ObjetivoService
 import br.com.redesenhe.redesenhe.service.repository.remote.RetrofitClient
 import com.google.gson.Gson
