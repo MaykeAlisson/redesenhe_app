@@ -9,7 +9,7 @@ import retrofit2.http.*
 interface ObjetivoService {
 
     @GET("/api/objetivo/v1/objetivo")
-    fun getAll(@Header("Authorization") token: String): Call<List<ObjetivoModel>>
+    fun getAll(): Call<List<ObjetivoModel>>
 
     @GET("/api/objetivo/v1/objetivo/{id}")
     fun getById(@Path(value = "id", encoded = true) id: Int): Call<ObjetivoModel>

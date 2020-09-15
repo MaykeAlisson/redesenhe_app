@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(view: View) {
        when(view.id){
            R.id.activity_main_linear_objetivo -> {
-               startActivity(Intent(this, ObjetivoActivity::class.java))
+               startActivity(Intent(this, ListaObjetivoActivity::class.java))
            }
            R.id.activity_main_linear_livro -> {
                Toast.makeText(applicationContext, "Em Breve!", Toast.LENGTH_LONG).show()

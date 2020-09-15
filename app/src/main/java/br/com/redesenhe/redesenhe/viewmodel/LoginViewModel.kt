@@ -24,25 +24,24 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
      * Faz login usando API
      */
     fun doLogin(email: String, password: String) {
-        mLogin.value = ValidationListener()
+//        mLogin.value = ValidationListener()
 
-//        mUsuarioRepository.login(email, password, object : APIListener{
-//            override fun onSuccess(model: InfoUsuarioModel) {
-//                mSharedPreferences.store(RedesenheConstants.SHARED.TOKEN, model.token)
-//                mSharedPreferences.store(RedesenheConstants.SHARED.USER_ID, model.idUser)
-//                mSharedPreferences.store(RedesenheConstants.SHARED.USER_NAME, model.userName)
+        mUsuarioRepository.login(email, password, object : APIListener<InfoUsuarioModel> {
+            override fun onSuccess(model: InfoUsuarioModel) {
+                mSharedPreferences.store(RedesenheConstants.SHARED.TOKEN, model.token)
+                mSharedPreferences.store(RedesenheConstants.SHARED.USER_ID, model.idUser)
+                mSharedPreferences.store(RedesenheConstants.SHARED.USER_NAME, model.userName)
 
-//        RetrofitClient.addHeader(model.token)
-//
-//                mLogin.value = ValidationListener()
-//
-//            }
-//
-//            override fun onFailure(str: String) {
-//                mLogin.value = ValidationListener(str)
-//            }
-//
-//        })
+                RetrofitClient.addHeader(model.token)
+                mLogin.value = ValidationListener()
+
+            }
+
+            override fun onFailure(str: String) {
+                mLogin.value = ValidationListener(str)
+            }
+
+        })
     }
 
     /**

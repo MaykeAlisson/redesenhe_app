@@ -5,11 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.redesenhe.redesenhe.R
 import br.com.redesenhe.redesenhe.service.listener.ObjetivoListener
+import br.com.redesenhe.redesenhe.service.model.ObjetivoModel
 import br.com.redesenhe.redesenhe.view.viewholder.ObjetivoViewHolder
 
 class ObjetivoAdapter : RecyclerView.Adapter<ObjetivoViewHolder>() {
 
-    // private var mList: List<TaskModel> = arrayListOf()
+    private var mList: List<ObjetivoModel> = arrayListOf()
     private lateinit var mListener: ObjetivoListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ObjetivoViewHolder {
@@ -19,16 +20,21 @@ class ObjetivoAdapter : RecyclerView.Adapter<ObjetivoViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return 0
-        // return mList.count()
+//        return 0
+         return mList.count()
     }
 
     override fun onBindViewHolder(holder: ObjetivoViewHolder, position: Int) {
-        holder.bindData()
+        holder.bindData(mList[position])
     }
 
     fun attachListener(listener: ObjetivoListener) {
         mListener = listener
+    }
+
+    fun updateList(list: List<ObjetivoModel>){
+        mList = list
+        notifyDataSetChanged()
     }
 
 }
