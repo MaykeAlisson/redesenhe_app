@@ -11,9 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.redesenhe.redesenhe.R
 import br.com.redesenhe.redesenhe.service.listener.LancamentoListener
 import br.com.redesenhe.redesenhe.view.adapter.LancamentoAdapter
-import br.com.redesenhe.redesenhe.view.adapter.ObjetivoAdapter
 import br.com.redesenhe.redesenhe.viewmodel.AllLancamentoViewModel
-import br.com.redesenhe.redesenhe.viewmodel.AllObjetivoViewModel
 
 
 class AllLancamentoFragment : Fragment() {

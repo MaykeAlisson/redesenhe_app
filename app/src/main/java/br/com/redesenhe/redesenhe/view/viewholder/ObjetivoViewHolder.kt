@@ -4,14 +4,18 @@ import android.app.AlertDialog
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import br.com.redesenhe.redesenhe.R
 import br.com.redesenhe.redesenhe.service.listener.ObjetivoListener
 import br.com.redesenhe.redesenhe.service.model.ObjetivoModel
-import kotlinx.android.synthetic.main.row_objetivo_list.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ObjetivoViewHolder(itemView: View, val listener: ObjetivoListener) :
     RecyclerView.ViewHolder(itemView) {
+
+    private val mDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
 
     private val mTextDescricao: TextView = itemView.findViewById(R.id.row_objetivo_text_descricao)
     private val mTextValorObjetivo: TextView = itemView.findViewById(R.id.row_objetivo_text_vlr_objetivo)
@@ -24,12 +28,12 @@ class ObjetivoViewHolder(itemView: View, val listener: ObjetivoListener) :
      */
     fun bindData(objetivo: ObjetivoModel) {
 
-        this.mTextDescricao.text = ""
-        this.mTextValorObjetivo.text = ""
+        this.mTextDescricao.text = objetivo.nome
+        this.mTextValorObjetivo.text = objetivo.objetivo
         this.mPogressBar.max = 100
         this.mPogressBar.progress = 70
         this.mTextPorcentagem.text = "30%"
-        this.mTextValorAtual.text = ""
+        this.mTextValorAtual.text = "300,00"
 
         mTextDescricao.setOnLongClickListener {
             AlertDialog.Builder(itemView.context)
