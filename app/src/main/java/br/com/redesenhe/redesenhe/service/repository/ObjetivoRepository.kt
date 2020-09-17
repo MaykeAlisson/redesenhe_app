@@ -39,4 +39,27 @@ class ObjetivoRepository(val context: Context){
             }
         })
     }
+
+    fun findById(id: Int, listener: APIListener<ObjetivoModel>){
+        val call: Call<ObjetivoModel> = mRemote.getById(id)
+        call.enqueue(object : Callback<ObjetivoModel>{
+            override fun onResponse(
+                call: Call<ObjetivoModel>,
+                response: Response<ObjetivoModel>
+            ) {
+                if (response.code() != RedesenheConstants.HTTP.SUCCESS) {
+                    val validation =
+                        Gson().fromJson(response.errorBody()!!.toString(), String::class.java)
+                    listener.onFailure(validation)
+                } else {
+                    response.body()?.let { listener.onSuccess(it) }
+                }
+            }
+
+            override fun onFailure(call: Call<ObjetivoModel>, t: Throwable) {
+                listener.onFailure(context.getString(R.string.ERROR_UNEXPECTED))
+            }
+
+        })
+    }
 }
