@@ -5,14 +5,17 @@ import br.com.redesenhe.redesenhe.R
 import br.com.redesenhe.redesenhe.service.constants.RedesenheConstants
 import br.com.redesenhe.redesenhe.service.constants.RedesenheConstants.SHARED.TOKEN
 import br.com.redesenhe.redesenhe.service.listener.APIListener
+import br.com.redesenhe.redesenhe.service.model.InfoUsuarioModel
 import br.com.redesenhe.redesenhe.service.model.ObjetivoModel
 import br.com.redesenhe.redesenhe.service.repository.local.SecurityPreferences
 import br.com.redesenhe.redesenhe.service.repository.remote.ObjetivoService
 import br.com.redesenhe.redesenhe.service.repository.remote.RetrofitClient
 import com.google.gson.Gson
+import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.math.BigDecimal
 
 class ObjetivoRepository(val context: Context){
 
@@ -60,6 +63,34 @@ class ObjetivoRepository(val context: Context){
                 listener.onFailure(context.getString(R.string.ERROR_UNEXPECTED))
             }
 
+        })
+    }
+
+    fun save(descricao: String, objetivo: BigDecimal, listener: APIListener<Void>) {
+
+        val obj = JsonObject()
+        obj.addProperty("nome", descricao)
+        obj.addProperty("objetivo", objetivo)
+
+        val call: Call<Void> = mRemote.create(obj)
+        call.enqueue(object : Callback<Void> {
+            override fun onResponse(
+                call: Call<Void>,
+                response: Response<Void>
+            ) {
+                if (response.code() != RedesenheConstants.HTTP.SUCCESS) {
+                    val validation =
+                        Gson().fromJson(response.errorBody()!!.toString(), String::class.java)
+                    listener.onFailure(validation)
+                } else {
+                    response.body()?.let { listener.onSuccess(it) }
+                }
+
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                listener.onFailure(context.getString(R.string.ERROR_UNEXPECTED))
+            }
         })
     }
 }

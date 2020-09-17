@@ -15,13 +15,13 @@ interface ObjetivoService {
     fun getById(@Path(value = "id", encoded = true) id: Int): Call<ObjetivoModel>
 
     @POST("/api/objetivo/v1/objetivo")
-    fun create(@Body json: JsonObject): Call<InfoUsuarioModel>
+    fun create(@Body json: JsonObject): Call<Void>
 
     @PUT("/api/objetivo/v1/objetivo/{id}")
-    fun update(@Path(value = "id", encoded = true) id: Int, @Body json: JsonObject): Call<InfoUsuarioModel>
+    fun update(@Path(value = "id", encoded = true) id: Int, @Body json: JsonObject): Call<Void>
 
     @DELETE("/api/objetivo/v1/objetivo/{id}")
-    fun delete(@Path(value = "id", encoded = true) id: Int): Call<InfoUsuarioModel>
+    fun delete(@Path(value = "id", encoded = true) id: Int): Call<Void>
 
 
 }
