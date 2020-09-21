@@ -5,11 +5,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.redesenhe.redesenhe.R
-import br.com.redesenhe.redesenhe.viewmodel.LoginViewModel
 import br.com.redesenhe.redesenhe.viewmodel.RegisterViewModel
-import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener  {
 
@@ -27,30 +27,40 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener  {
     }
 
     override fun onClick(view: View) {
-        TODO("Not yet implemented")
+        when (view.id) {
+            R.id.activity_register_btn_save -> {
+                handleCadastro()
+            }
+        }
     }
 
     /**
      * Inicializa os eventos de click
      */
     private fun setListeners() {
-//        activity_login_btn.setOnClickListener(this)
-//        activity_login_link_cadastro.setOnClickListener(this)
-//        activity_login_text_recuperar_senha.setOnClickListener(this)
+        activity_register_btn_save.setOnClickListener(this)
     }
 
     /**
      * Observa ViewModel
      */
     private fun observe() {
-//        mViewModel.login.observe(this, Observer {
-//            if (it.success()){
-//                startActivity(Intent(this, MainActivity::class.java))
-//            }else{
-//                val msg = it.falure()
-//                Toast.makeText(applicationContext, msg, Toast.LENGTH_SHORT).show()
-//            }
-//        })
+        mViewModel.create.observe(this, Observer {
+            if (it.success()){
+                startActivity(Intent(this, MainActivity::class.java))
+            }else{
+                val msg = it.falure()
+                Toast.makeText(applicationContext, msg, Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun handleCadastro(){
+        val nome = activity_register_edit_nome.text.toString()
+        val email = activity_register_edit_email.text.toString()
+        val senha = activity_register_edit_senha.text.toString()
+
+        mViewModel.create(nome, email, senha)
     }
 
 }

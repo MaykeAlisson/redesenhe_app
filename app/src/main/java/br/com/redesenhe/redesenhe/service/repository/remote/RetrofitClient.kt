@@ -3,6 +3,7 @@ package br.com.redesenhe.redesenhe.service.repository.remote
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 class RetrofitClient private constructor() {
 
@@ -15,6 +16,10 @@ class RetrofitClient private constructor() {
 
         private fun getRetrofitInstance(): Retrofit {
             val httpClient = OkHttpClient.Builder()
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(15, TimeUnit.SECONDS)
+
             httpClient.addInterceptor { chain ->
                 val request =
                     chain.request()

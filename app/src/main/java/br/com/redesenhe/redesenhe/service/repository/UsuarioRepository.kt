@@ -2,6 +2,7 @@ package br.com.redesenhe.redesenhe.service.repository
 
 import android.content.Context
 import br.com.redesenhe.redesenhe.R
+import br.com.redesenhe.redesenhe.service.constants.RedesenheConstants.HTTP.CREATE
 import br.com.redesenhe.redesenhe.service.constants.RedesenheConstants.HTTP.SUCCESS
 import br.com.redesenhe.redesenhe.service.listener.APIListener
 import br.com.redesenhe.redesenhe.service.model.InfoUsuarioModel
@@ -45,9 +46,10 @@ class UsuarioRepository(val context: Context) {
         })
     }
 
-    fun create(email: String, senha: String, listener: APIListener<InfoUsuarioModel>) {
+    fun create(nome: String, email: String, senha: String, listener: APIListener<InfoUsuarioModel>) {
 
         val obj = JsonObject()
+        obj.addProperty("nome", nome)
         obj.addProperty("email", email)
         obj.addProperty("senha", senha)
 
@@ -57,7 +59,7 @@ class UsuarioRepository(val context: Context) {
                 call: Call<InfoUsuarioModel>,
                 response: Response<InfoUsuarioModel>
             ) {
-                if (response.code() != SUCCESS) {
+                if (response.code() != CREATE) {
                     val validation =
                         Gson().fromJson(response.errorBody()!!.toString(), String::class.java)
                     listener.onFailure(validation)

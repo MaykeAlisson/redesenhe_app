@@ -4,9 +4,13 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import br.com.redesenhe.redesenhe.service.constants.RedesenheConstants
+import br.com.redesenhe.redesenhe.service.listener.APIListener
 import br.com.redesenhe.redesenhe.service.listener.ValidationListener
+import br.com.redesenhe.redesenhe.service.model.InfoUsuarioModel
 import br.com.redesenhe.redesenhe.service.repository.UsuarioRepository
 import br.com.redesenhe.redesenhe.service.repository.local.SecurityPreferences
+import br.com.redesenhe.redesenhe.service.repository.remote.RetrofitClient
 
 class RegisterViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -16,6 +20,23 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
     private val mCreate = MutableLiveData<ValidationListener>()
     var create: LiveData<ValidationListener> = mCreate
 
-    fun create(){}
+    fun create(nome: String, email: String, senha: String){
+
+        mUsuarioRepository.create(nome, email, senha, object : APIListener<InfoUsuarioModel>{
+            override fun onSuccess(model: InfoUsuarioModel) {
+                mSharedPreferences.store(RedesenheConstants.SHARED.TOKEN, model.token)
+                mSharedPreferences.store(RedesenheConstants.SHARED.USER_ID, model.idUser)
+                mSharedPreferences.store(RedesenheConstants.SHARED.USER_NAME, model.userName)
+
+                RetrofitClient.addHeader(model.token)
+                mCreate.value = ValidationListener()
+
+            }
+
+            override fun onFailure(str: String) {
+                mCreate.value = ValidationListener(str)
+            }
+        })
+    }
 
 }

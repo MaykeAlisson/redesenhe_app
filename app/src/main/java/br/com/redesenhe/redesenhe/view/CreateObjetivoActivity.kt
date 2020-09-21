@@ -65,7 +65,7 @@ class CreateObjetivoActivity : AppCompatActivity(), View.OnClickListener {
     private fun handleCreate() {
         val descricao = activity_create_objetivo_nome.text.toString()
         val objetivo = activity_create_objetivo_valor.text.toString()
-        
+
         mViewModel.create(descricao, objetivo)
     }
 
