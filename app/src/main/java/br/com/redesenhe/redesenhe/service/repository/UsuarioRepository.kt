@@ -1,6 +1,7 @@
 package br.com.redesenhe.redesenhe.service.repository
 
 import android.content.Context
+import android.util.Log
 import br.com.redesenhe.redesenhe.R
 import br.com.redesenhe.redesenhe.service.constants.RedesenheConstants.HTTP.CREATE
 import br.com.redesenhe.redesenhe.service.constants.RedesenheConstants.HTTP.SUCCESS
@@ -41,6 +42,7 @@ class UsuarioRepository(val context: Context) {
             }
 
             override fun onFailure(call: Call<InfoUsuarioModel>, t: Throwable) {
+                Log.e(String.format("ERRO_REDESENHE LOGIN: %s", t.message), t.toString())
                 listener.onFailure(context.getString(R.string.ERROR_UNEXPECTED))
             }
         })

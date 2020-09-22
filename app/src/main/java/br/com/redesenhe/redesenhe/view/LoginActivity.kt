@@ -8,12 +8,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.redesenhe.redesenhe.R
+import br.com.redesenhe.redesenhe.infra.util.LoadingDialog
+import br.com.redesenhe.redesenhe.infra.util.UtilString.isValidEmail
 import br.com.redesenhe.redesenhe.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var mViewModel: LoginViewModel
+
+    val loadingDialog: LoadingDialog = LoadingDialog(this)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,9 +70,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
      */
     private fun observe() {
         mViewModel.login.observe(this, Observer {
-            if (it.success()){
+            if (it.success()) {
                 startActivity(Intent(this, MainActivity::class.java))
-            }else{
+            } else {
                 val msg = it.falure()
                 Toast.makeText(applicationContext, msg, Toast.LENGTH_SHORT).show()
             }
@@ -81,6 +86,18 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         val email = activity_login_text_email.text.toString()
         val password = activity_login_text_senha.text.toString()
 
+        if (email.trim().isEmpty()) {
+            activity_login_text_email.error = "E-mail Obrigatorio!"
+            return
+        } else if (password.trim().isEmpty()){
+            activity_login_text_senha.error = "Senha obrigatoria!"
+            return
+        }
+
+        if (!isValidEmail(email)) {
+            activity_login_text_email.error = "E-mail invalido!"
+            return
+        }
         mViewModel.doLogin(email, password)
 
     }

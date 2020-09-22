@@ -67,10 +67,10 @@ class CreateObjetivoActivity : AppCompatActivity(), View.OnClickListener {
         val objetivo = activity_create_objetivo_valor.text.toString()
 
         if (descricao.trim().isEmpty()) {
-            Toast.makeText(applicationContext, "Descrição obrigatoria!", Toast.LENGTH_SHORT).show()
+            activity_create_objetivo_nome.error = "Descrição obrigatoria!"
             return
         } else if (objetivo.isEmpty()){
-            Toast.makeText(applicationContext, "Objetivo obrigatorio!", Toast.LENGTH_SHORT).show()
+            activity_create_objetivo_valor.error = "Objetivo obrigatorio!"
             return
         }
 

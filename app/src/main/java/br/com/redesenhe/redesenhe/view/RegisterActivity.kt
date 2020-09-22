@@ -8,7 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.redesenhe.redesenhe.R
+import br.com.redesenhe.redesenhe.infra.util.UtilString
 import br.com.redesenhe.redesenhe.viewmodel.RegisterViewModel
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener  {
@@ -60,7 +62,26 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener  {
         val email = activity_register_edit_email.text.toString()
         val senha = activity_register_edit_senha.text.toString()
 
-        mViewModel.create(nome, email, senha)
+        when {
+            nome.trim().isEmpty() -> {
+                activity_register_edit_nome.error = "Nome obrigatorio!"
+                return
+            }
+            senha.trim().isEmpty() -> {
+                activity_register_edit_senha.error = "Senha obrigatoria!"
+                return
+            }
+            senha.length < 6 -> {
+                activity_register_edit_senha.error = "Senha muito pequena!"
+                return
+            }
+            !UtilString.isValidEmail(email) -> {
+                activity_register_edit_email.error = "E-mail invalido!"
+                return
+            }
+            else -> mViewModel.create(nome, email, senha)
+        }
+
     }
 
 }
