@@ -44,7 +44,7 @@ public class MoneyTextWatcher implements TextWatcher {
         editText.removeTextChangedListener(this);
         BigDecimal parsed = parseToBigDecimal(editable.toString(), locale);
         String formatted = NumberFormat.getCurrencyInstance(locale).format(parsed);
-        // NumberFormat.getNumberInstance(locale).format(parsed); // sem o simbolo de moeda
+//        NumberFormat.getNumberInstance(locale).format(parsed); // sem o simbolo de moeda
 
         editText.setText(formatted);
         editText.setSelection(formatted.length());

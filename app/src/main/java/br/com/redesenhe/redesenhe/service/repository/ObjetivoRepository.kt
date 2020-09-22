@@ -66,7 +66,7 @@ class ObjetivoRepository(val context: Context){
         })
     }
 
-    fun save(descricao: String, objetivo: BigDecimal, listener: APIListener<Void>) {
+    fun save(descricao: String, objetivo: Double, listener: APIListener<Void>) {
 
         val obj = JsonObject()
         obj.addProperty("nome", descricao)
