@@ -28,12 +28,15 @@ class ObjetivoViewHolder(itemView: View, val listener: ObjetivoListener) :
      */
     fun bindData(objetivo: ObjetivoModel) {
 
+        val progresso = (objetivo.lancamento.toDouble() / objetivo.objetivo.toDouble() )  * 100
+        val porcentagem = "$progresso%"
+
         this.mTextDescricao.text = objetivo.nome
         this.mTextValorObjetivo.text = objetivo.objetivo
         this.mPogressBar.max = 100
-        this.mPogressBar.progress = 70
-        this.mTextPorcentagem.text = "30%"
-        this.mTextValorAtual.text = "300,00"
+        this.mPogressBar.progress = progresso.toInt()
+        this.mTextPorcentagem.text = porcentagem
+        this.mTextValorAtual.text = objetivo.lancamento
 
         mTextDescricao.setOnLongClickListener {
             AlertDialog.Builder(itemView.context)

@@ -16,4 +16,7 @@ class ObjetivoModel {
     @SerializedName("criacao")
     var criacao: String = ""
 
+    @SerializedName("lancamento")
+    var lancamento: String = ""
+
 }
