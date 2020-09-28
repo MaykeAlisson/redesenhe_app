@@ -37,7 +37,7 @@ class ObjetivoViewHolder(itemView: View, val listener: ObjetivoListener) :
         this.mPogressBar.progress = progresso.toInt()
         this.mTextPorcentagem.text = porcentagem
         this.mTextValorAtual.text = objetivo.lancamento
-
+        
         mTextDescricao.setOnLongClickListener {
             AlertDialog.Builder(itemView.context)
                 .setTitle("Remover Objetivo")
@@ -49,5 +49,6 @@ class ObjetivoViewHolder(itemView: View, val listener: ObjetivoListener) :
                 .show()
             true
         }
+
     }
 }

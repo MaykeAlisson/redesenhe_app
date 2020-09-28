@@ -22,7 +22,7 @@ class CreateObjetivoViewModel(application: Application) : AndroidViewModel(appli
             .toDouble()
 
         mObjetivoRepository.save(descricao, valor, object : APIListener<Void> {
-            override fun onSuccess(model: Void) {
+            override fun onSuccess() {
                 mCreate.value = ValidationListener()
             }
 

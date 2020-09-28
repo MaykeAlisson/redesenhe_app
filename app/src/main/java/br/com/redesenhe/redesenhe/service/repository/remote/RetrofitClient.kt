@@ -10,7 +10,7 @@ class RetrofitClient private constructor() {
     companion object {
 
         private lateinit var retrofit: Retrofit
-        private val baseurl = "http://192.168.0.4:3000"
+        private val baseurl = "http://192.168.0.6:3000"
         private var tokenKey = ""
 //        private val baseurl = "http://192.168.1.86:3000"
 
