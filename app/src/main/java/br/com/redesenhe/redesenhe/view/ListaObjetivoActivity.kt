@@ -48,11 +48,11 @@ class ListaObjetivoActivity : AppCompatActivity(), View.OnClickListener {
             override fun onDeleteClick(id: Int) {
             }
 
-            override fun onCompleteClick(id: Int) {
-            }
-
-            override fun onUndoClick(id: Int) {
-            }
+//            override fun onCompleteClick(id: Int) {
+//            }
+//
+//            override fun onUndoClick(id: Int) {
+//            }
         }
 
         // Inicializa eventos

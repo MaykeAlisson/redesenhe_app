@@ -37,13 +37,15 @@ class ObjetivoViewHolder(itemView: View, val listener: ObjetivoListener) :
         this.mPogressBar.progress = progresso.toInt()
         this.mTextPorcentagem.text = porcentagem
         this.mTextValorAtual.text = objetivo.lancamento
-        
+
+        mTextDescricao.setOnClickListener{ listener.onListClick(objetivo.id) }
+
         mTextDescricao.setOnLongClickListener {
             AlertDialog.Builder(itemView.context)
                 .setTitle("Remover Objetivo")
                 .setMessage("Remover Objetivo?")
                 .setPositiveButton("Sim") { dialog, which ->
-                    // listener.onDeleteClick(task.id)
+                     listener.onDeleteClick(objetivo.id)
                 }
                 .setNeutralButton("Cancelar", null)
                 .show()

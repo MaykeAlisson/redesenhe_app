@@ -6,20 +6,49 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import br.com.redesenhe.redesenhe.R
 import br.com.redesenhe.redesenhe.service.constants.RedesenheConstants
+import br.com.redesenhe.redesenhe.service.listener.LancamentoListener
+import br.com.redesenhe.redesenhe.view.adapter.LancamentoAdapter
 import br.com.redesenhe.redesenhe.viewmodel.ObjetivoViewModel
 import kotlinx.android.synthetic.main.activity_objetivo.*
 
-class ObjetivoActivity : AppCompatActivity(),  View.OnClickListener {
+class ObjetivoActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var mViewModel: ObjetivoViewModel
+    private lateinit var mListener: LancamentoListener
+    private val mAdapter = LancamentoAdapter()
+
+    private var idObjetivo : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_objetivo)
 
         mViewModel = ViewModelProvider(this).get(ObjetivoViewModel::class.java)
+
+        val recycler = findViewById<RecyclerView>(R.id.recycler_all_lancamento)
+        recycler.layoutManager = LinearLayoutManager(this)
+        recycler.adapter = mAdapter
+
+        mListener = object : LancamentoListener {
+            override fun onListClick(id: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onDeleteClick(id: Int) {
+                TODO("Not yet implemented")
+            }
+
+//            override fun onCompleteClick(id: Int) {
+//            }
+
+//            override fun onUndoClick(id: Int) {
+//            }
+
+        }
 
         // Inicializa eventos
         setListeners();
@@ -39,7 +68,7 @@ class ObjetivoActivity : AppCompatActivity(),  View.OnClickListener {
     private fun loadDataFromActivity() {
         val bundle = intent.extras
         if (bundle != null) {
-            val idObjetivo = bundle.getInt(RedesenheConstants.BUNDLE.OBJETIVOID)
+            idObjetivo = bundle.getInt(RedesenheConstants.BUNDLE.OBJETIVOID)
             mViewModel.load(idObjetivo)
         }
     }
@@ -57,12 +86,26 @@ class ObjetivoActivity : AppCompatActivity(),  View.OnClickListener {
      */
     private fun observe() {
         mViewModel.objetivo.observe(this, Observer {
+            val progresso = (it.lancamento.toDouble() / it.objetivo.toDouble()) * 100
+            val porcentagem = "$progresso%"
             activity_objetivo_text_decricao.text = it.nome
             activity_objetivo_text_objetivo.text = it.objetivo
             activity_objetivo_progress.max = 100
-            activity_objetivo_progress.progress = 30
-            activity_objetivo_text_porcentagem.text = "30%"
-            activity_objetivo_text_valor_atual.text = "400"
+            activity_objetivo_progress.progress = progresso.toInt()
+            activity_objetivo_text_porcentagem.text = porcentagem
+            activity_objetivo_text_valor_atual.text = it.lancamento
         })
+
+        mViewModel.lancamentos.observe(this, Observer {
+            if (it.count() > 0) {
+                mAdapter.updateList(it)
+            }
+        })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mAdapter.attachListener(mListener)
+        mViewModel.getLancamento(idObjetivo)
     }
 }

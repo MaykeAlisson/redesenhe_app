@@ -15,13 +15,13 @@ interface LancamentoService {
     fun getByObjetivo(@Path(value = "id", encoded = true) id: Int): Call<List<LancamentoModel>>
 
     @POST("/api/lancamento/v1/lancamento")
-    fun create(@Body json: JsonObject): Call<InfoUsuarioModel>
+    fun create(@Body json: JsonObject): Call<Void>
 
     @PUT("/api/lancamento/v1/lancamento/{id}")
-    fun update(@Path(value = "id", encoded = true) id: Int, @Body json: JsonObject): Call<InfoUsuarioModel>
+    fun update(@Path(value = "id", encoded = true) id: Int, @Body json: JsonObject): Call<Void>
 
     @DELETE("/api/lancamento/v1/lancamento/{id}")
-    fun delete(@Path(value = "id", encoded = true) id: Int): Call<InfoUsuarioModel>
+    fun delete(@Path(value = "id", encoded = true) id: Int): Call<Void>
 
 
 }

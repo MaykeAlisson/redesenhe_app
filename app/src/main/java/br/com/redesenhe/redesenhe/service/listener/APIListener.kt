@@ -5,6 +5,6 @@ interface APIListener<T> {
     fun onSuccess(model: T){}
 
     fun onSuccess(){}
-    
+
     fun onFailure(str: String){}
 }

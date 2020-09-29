@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.redesenhe.redesenhe.R
 import br.com.redesenhe.redesenhe.service.listener.LancamentoListener
+import br.com.redesenhe.redesenhe.service.model.LancamentoModel
 import br.com.redesenhe.redesenhe.view.viewholder.LancamentoViewHolder
-import br.com.redesenhe.redesenhe.view.viewholder.ObjetivoViewHolder
 
 class LancamentoAdapter : RecyclerView.Adapter<LancamentoViewHolder>() {
 
-    // private var mList: List<TaskModel> = arrayListOf()
+    private var mList: List<LancamentoModel> = arrayListOf()
     private lateinit var mListener: LancamentoListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LancamentoViewHolder {
@@ -20,15 +20,20 @@ class LancamentoAdapter : RecyclerView.Adapter<LancamentoViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return 0
-        // return mList.count()
+//        return 0
+        return mList.count()
     }
 
     override fun onBindViewHolder(holder: LancamentoViewHolder, position: Int) {
-        holder.bindData()
+        holder.bindData(mList[position])
     }
 
     fun attachListener(listener: LancamentoListener) {
         mListener = listener
+    }
+
+    fun updateList(list: List<LancamentoModel>) {
+        mList = list
+        notifyDataSetChanged()
     }
 }
