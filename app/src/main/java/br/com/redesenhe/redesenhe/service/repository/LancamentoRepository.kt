@@ -8,6 +8,7 @@ import br.com.redesenhe.redesenhe.service.model.LancamentoModel
 import br.com.redesenhe.redesenhe.service.repository.remote.LancamentoService
 import br.com.redesenhe.redesenhe.service.repository.remote.RetrofitClient
 import com.google.gson.Gson
+import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,5 +38,15 @@ class LancamentoRepository(val context: Context) {
             }
 
         })
+    }
+
+    fun save(descricao: String, valor: Double, origem: String, destino: String, idObjetivo: Int, listener: APIListener<Void>){
+
+        val obj = JsonObject()
+        obj.addProperty("nome", descricao)
+        obj.addProperty("valor", valor)
+        obj.addProperty("origem", origem)
+        obj.addProperty("destino", destino)
+        obj.addProperty("id_objetivo", idObjetivo)
     }
 }
