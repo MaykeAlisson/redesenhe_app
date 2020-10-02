@@ -48,5 +48,24 @@ class LancamentoRepository(val context: Context) {
         obj.addProperty("origem", origem)
         obj.addProperty("destino", destino)
         obj.addProperty("id_objetivo", idObjetivo)
+
+        val call: Call<Void> = mRemote.create(obj)
+        call.enqueue(object : Callback<Void>{
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if (response.code() != RedesenheConstants.HTTP.CREATE) {
+                    val validation =
+                        Gson().fromJson(response.errorBody()!!.toString(), String::class.java)
+                    listener.onFailure(validation)
+                } else {
+                    listener.onSuccess()
+//                    response.body()?.let { listener.onSuccess(it) }
+                }
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                listener.onFailure(context.getString(R.string.ERROR_UNEXPECTED))
+            }
+
+        })
     }
 }

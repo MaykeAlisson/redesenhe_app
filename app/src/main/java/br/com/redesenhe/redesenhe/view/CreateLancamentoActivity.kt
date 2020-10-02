@@ -1,22 +1,23 @@
 package br.com.redesenhe.redesenhe.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import br.com.redesenhe.redesenhe.R
+import androidx.lifecycle.Observer
 import br.com.redesenhe.redesenhe.infra.util.MoneyTextWatcher
 import br.com.redesenhe.redesenhe.service.constants.RedesenheConstants
 import br.com.redesenhe.redesenhe.viewmodel.CreateLancamentoViewModel
-import br.com.redesenhe.redesenhe.viewmodel.CreateObjetivoViewModel
 import kotlinx.android.synthetic.main.activity_create_lancamento.*
-import kotlinx.android.synthetic.main.activity_create_objetivo.*
 import java.util.*
+import kotlin.properties.Delegates
 
 class CreateLancamentoActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var mViewModel: CreateLancamentoViewModel
+    private var idObjetivo by Delegates.notNull<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,7 +73,7 @@ class CreateLancamentoActivity : AppCompatActivity(), View.OnClickListener {
 
         val bundle = intent.extras
         if (bundle != null) {
-            var idObjetivo = bundle.getInt(RedesenheConstants.BUNDLE.OBJETIVOID)
+            idObjetivo = bundle.getInt(RedesenheConstants.BUNDLE.OBJETIVOID)
         }
 
         when {

@@ -21,7 +21,7 @@ class ObjetivoActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mListener: LancamentoListener
     private val mAdapter = LancamentoAdapter()
 
-    private var idObjetivo : Int = 0
+    private var idObjetivo: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +60,11 @@ class ObjetivoActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(view: View) {
         when (view.id) {
             R.id.activity_objetivo_fab -> {
-                startActivity(Intent(this, CreateLancamentoActivity::class.java))
+                val intent = Intent(this, CreateLancamentoActivity::class.java)
+                val bundle = Bundle()
+                bundle.putInt(RedesenheConstants.BUNDLE.OBJETIVOID, idObjetivo)
+                intent.putExtras(bundle)
+                startActivity(intent)
             }
         }
     }
