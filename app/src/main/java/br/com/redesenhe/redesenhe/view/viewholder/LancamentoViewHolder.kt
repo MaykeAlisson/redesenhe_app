@@ -25,6 +25,7 @@ class LancamentoViewHolder(itemView: View, val listener: LancamentoListener) :
         this.mTextValor.text = lancamento.valor
         this.mTextOrigem.text = lancamento.origem
         this.mTextDestino.text = lancamento.destino
-        this.mTextData.text = lancamento.criacao
+        this.mTextData.text = "11-04-2020"
+//        this.mTextData.text = lancamento.criacao
     }
 }
