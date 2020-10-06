@@ -3,9 +3,11 @@ package br.com.redesenhe.redesenhe.view
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.redesenhe.redesenhe.R
@@ -31,6 +33,8 @@ class ObjetivoActivity : AppCompatActivity(), View.OnClickListener {
 
         val recycler = findViewById<RecyclerView>(R.id.recycler_all_lancamento)
         recycler.layoutManager = LinearLayoutManager(this)
+        recycler.setHasFixedSize(true)
+        recycler.addItemDecoration(DividerItemDecoration(this,LinearLayout.VERTICAL))
         recycler.adapter = mAdapter
 
         mListener = object : LancamentoListener {

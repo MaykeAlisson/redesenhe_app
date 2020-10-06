@@ -24,8 +24,8 @@
         android:id="@+id/activitt_objetivo_constraintlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="16dp"
-        >
+        android:background="#E8E2E2"
+        android:paddingBottom="16dp">
 
         <TextView
             android:id="@+id/activity_objetivo_text_decricao"

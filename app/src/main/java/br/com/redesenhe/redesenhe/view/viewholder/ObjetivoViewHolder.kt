@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import br.com.redesenhe.redesenhe.R
@@ -17,6 +18,7 @@ class ObjetivoViewHolder(itemView: View, val listener: ObjetivoListener) :
 
     private val mDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
 
+    private val mRow : ConstraintLayout = itemView.findViewById(R.id.row_objetivo_row)
     private val mTextDescricao: TextView = itemView.findViewById(R.id.row_objetivo_text_descricao)
     private val mTextValorObjetivo: TextView = itemView.findViewById(R.id.row_objetivo_text_vlr_objetivo)
     private val mPogressBar: ProgressBar = itemView.findViewById(R.id.row_objetivo_progressBar)
@@ -38,9 +40,10 @@ class ObjetivoViewHolder(itemView: View, val listener: ObjetivoListener) :
         this.mTextPorcentagem.text = porcentagem
         this.mTextValorAtual.text = objetivo.lancamento
 
-        mTextDescricao.setOnClickListener{ listener.onListClick(objetivo.id) }
+        mRow.setOnClickListener{ listener.onListClick(objetivo.id) }
+//        mTextDescricao.setOnClickListener{ listener.onListClick(objetivo.id) }
 
-        mTextDescricao.setOnLongClickListener {
+        mRow.setOnLongClickListener {
             AlertDialog.Builder(itemView.context)
                 .setTitle("Remover Objetivo")
                 .setMessage("Remover Objetivo?")
